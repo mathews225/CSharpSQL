@@ -19,6 +19,25 @@ namespace CSharpSQL {
 			return (rowsAffected == 1);
 		}
 
+		public bool Update(Student student) {
+			var sql = $"UPDATE Student Set "+
+				" StateCode = @statecode, " +
+				" Lastname = @lastname, " +
+				" Firstname = @firstname, " +
+				" GPA = @gpa, " +
+				" SAT = @sat " +
+				" WHERE Id = @id;";
+			var cmd = new SqlCommand(sql, connection.sqlconnection);
+			cmd.Parameters.AddWithValue ("@statecode", student.StateCode);
+			cmd.Parameters.AddWithValue ("@lastname", student.Lastname);
+			cmd.Parameters.AddWithValue ("@firstname", student.Firstname);
+			cmd.Parameters.AddWithValue ("@gpa", student.GPA);
+			cmd.Parameters.AddWithValue("@sat", student.SAT);
+			cmd.Parameters.AddWithValue ("@id", student.Id);
+			var recsAffected = cmd.ExecuteNonQuery();
+			return (recsAffected == 1);
+
+		}
 
 
 		public Student GetByPKey(int id) {
