@@ -9,6 +9,18 @@ namespace CSharpSQL {
 
 		private Connection connection { get; set; }
 
+
+		public bool Create(Student student) {
+			var sql = $"INSERT into Student "+
+				" (StateCode, Lastname, Firstname, GPA, SAT) "+
+				$"VALUES ('{student.StateCode}','{student.Lastname}','{student.Firstname}',{student.GPA},{student.SAT});";
+			var cmd = new SqlCommand(sql, connection.sqlconnection);
+			var rowsAffected = cmd.ExecuteNonQuery();
+			return (rowsAffected == 1);
+		}
+
+
+
 		public Student GetByPKey(int id) {
 			var sql = $"SELECT * From Student WHERE Id = {id};";
 			var cmd = new SqlCommand(sql, connection.sqlconnection);

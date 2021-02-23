@@ -9,6 +9,21 @@ namespace CSharpSqlConsole {
 			conn.Connect("EdDb");
 			var studentController = new StudentsController(conn);
 
+			
+			var newStudent = new Student {
+				Id = 0,
+				Firstname = "Joe",
+				Lastname = "Biden",
+				GPA = 3.5m,
+				Major = null,
+				SAT = 1300,
+				StateCode = "CT"
+			};
+
+			var insert = studentController.Create(newStudent);
+
+
+
 			var student = studentController.GetByPKey(3);
 			Console.WriteLine($"{student.Id}, {student.Lastname}, {student.Firstname}");
 
