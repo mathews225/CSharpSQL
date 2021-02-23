@@ -17,7 +17,8 @@ namespace CSharpSQL {
 				var Section = Convert.ToInt32(reader["Section"]);
 				//var InstructorId = Convert.ToInt32(reader["InstuctorId"]);
 				Console.WriteLine($"Id: {Id}\t Code: {Code}\t Section: {Section}\t Subject: {Subject}");
-			}; 
+			};
+			reader.Close();
 
 		}
 
@@ -32,7 +33,7 @@ namespace CSharpSQL {
 				var GPA = Convert.ToDecimal(reader["GPA"]);
 				var SAT = Convert.ToInt32(reader["SAT"]);
 				var MajorId = Convert.ToInt32(reader["MajorId"]);
-				Console.WriteLine($" StateCode: {StateCode},\t Firstname: {Firstname},\t Lastname: {Lastname},\t GPA: {GPA},\t SAT: {SAT}");
+				Console.WriteLine($" StateCode: {StateCode},\t Lastname: {Lastname},\t Firstname: {Firstname},\t GPA: {GPA},\t SAT: {SAT}");
 
 				/*
 				var description = reader["description"].ToString();
