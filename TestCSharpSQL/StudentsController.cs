@@ -95,6 +95,25 @@ namespace CSharpSQL {
 			return students;
 		}
 
+		public bool Delete(int id) {
+			var sql = $"DELETE From Student WHERE id = @id;";
+			var cmd = new SqlCommand(sql, connection.sqlconnection);
+			cmd.Parameters.AddWithValue("@id", id);
+			var recsAffected = cmd.ExecuteNonQuery();
+			return (recsAffected == 1);
+		}
+
+
+		public bool DeleteRange(params int[] ids) {
+			var success = true;
+			foreach (var id in ids) {
+				success &= Delete(id);
+			}
+			return success;
+		}
+		
+
+
 		public StudentsController(Connection connection) {
 			this.connection = connection;
 		}

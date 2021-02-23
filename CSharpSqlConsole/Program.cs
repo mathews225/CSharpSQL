@@ -27,8 +27,15 @@ namespace CSharpSqlConsole {
 			var success = studentController.Update(newStudent);
 
 
-			var student = studentController.GetByPKey(61);
+			var student = studentController.GetByPKey(60);
 			Console.WriteLine($"{student.Id}, {student.Firstname} {student.Lastname}");
+
+
+			success = studentController.Delete(61);
+			Console.WriteLine($"Remove Success: {success}");
+
+			success = studentController.DeleteRange(59,60);
+			Console.WriteLine($"Remove Success: {success}");
 
 			/*
 			
