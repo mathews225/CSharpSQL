@@ -19,7 +19,6 @@ namespace CSharpSQL {
 				Console.WriteLine($"Id: {Id}\t Code: {Code}\t Section: {Section}\t Subject: {Subject}");
 			};
 			reader.Close();
-
 		}
 
 		public void SelectStudent() {
