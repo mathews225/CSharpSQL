@@ -9,6 +9,7 @@ namespace CSharpSqlConsole {
 			conn.Connect("EdDb");
 			var studentController = new StudentsController(conn);
 			var majorController = new MajorsController(conn);
+			var classController = new ClassesController(conn);
 
 
 			var majors = majorController.GetAll();
@@ -37,16 +38,35 @@ namespace CSharpSqlConsole {
 				SAT = 1300,
 				StateCode = "PA"
 			};
+ 
+
+			/* 
+			var newClass = new Class {
+				Id = 0,
+				Code = "MAT151",
+				Subject = "Math",
+				Section = 151,
+				InstructorId = 8 
+			};
+
+			var insert = classController.Create(newClass);
+			newClass.Id = 38;
+			var success = classController.Update(newClass);
+
+			var classes = classController.ReadAll();
+			foreach (var c in classes) {
+				Console.WriteLine($"{ c.Id}:\t {c.Code}, {c.Section}\t {c.InstructorId}\t {c.Subject}");
+			}
 
 			/*
 			var insert = studentController.Create(newStudent);
 			newStudent.Id = 61;
 			var success = studentController.Update(newStudent);
+
+			var cl = classController.GetByPKey(40);
+			Console.WriteLine($"{ cl.Id}:\t {cl.Code}, {cl.Section}\t {cl.InstructorId}\t {cl.Subject}");
+
 			*/
-
-
-			var student = studentController.GetByPKey(40);
-			Console.WriteLine($"{student.Id}, {student.Firstname} {student.Lastname}");
 
 			/*
 
