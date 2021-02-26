@@ -1,5 +1,6 @@
 ﻿using System;
 using CSharpSQL;
+using System.Linq;
 
 namespace CSharpSqlConsole {
 	class Program {
@@ -7,10 +8,35 @@ namespace CSharpSqlConsole {
 
 			var conn = new Connection();
 			conn.Connect("EdDb");
-			var studentController = new StudentsController(conn);
-			var majorController = new MajorsController(conn);
-			var classController = new ClassesController(conn);
 
+			var sctrl = new StudentsController(conn);
+			var students = sctrl.GetAll();
+			var mctrl = new MajorsController(conn);
+			var majors = mctrl.GetAll();
+
+			var sm = from s in students
+							 join m in majors
+							 on s.MajorId equals m.Id
+							 select new {
+								 s.Id,
+								 Name = s.Firstname+" "+s.Lastname,
+								 m.Description
+							 };
+
+			foreach (var s in sm) {
+				Console.WriteLine($"{s.Id}\t{s.Name}\t{s.Description}");
+			}
+
+
+			#region hide
+
+			// var studentController = new StudentsController(conn);
+			// var majorController = new MajorsController(conn);
+			// var classController = new ClassesController(conn);
+
+
+
+			/*
 
 			var majors = majorController.GetAll();
 			foreach (var m in majors) {
@@ -98,9 +124,8 @@ namespace CSharpSqlConsole {
 			sql.Disconnect();
 			*/
 
-
-
-
+			#endregion
+			var xxcvbnm = 1;
 		}
 	}
 }

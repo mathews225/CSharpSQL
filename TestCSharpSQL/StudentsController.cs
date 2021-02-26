@@ -54,9 +54,9 @@ namespace CSharpSQL {
 			return student;
 		}
 		public List<Student> GetAll() {
-			var sql = "SELECT * From Student s "+
-					"LEFT JOIN Major m on s.MajorId = m.Id " +
-					"ORDER BY s.Lastname; ";
+			var sql = "SELECT * From Student s ";
+					//"LEFT JOIN Major m on s.MajorId = m.Id " +
+					//"ORDER BY s.Lastname; ";
 			var cmd = new SqlCommand(sql, connection.sqlconnection);
 			var reader = cmd.ExecuteReader();
 			var students = new List<Student>();
@@ -69,12 +69,12 @@ namespace CSharpSQL {
 				student.GPA = Convert.ToDecimal(reader["GPA"]);
 				student.SAT = Convert.ToInt32(reader["SAT"]);
 				//student.MajorId = null;
-				student.Major = null;
+				student.MajorId = null;
 				//if (reader["MajorId"] != null) {
 				//	student.MajorId = Convert.ToInt32(reader["MajorId"]);
 				//}
-				if (reader["Description"] != System.DBNull.Value) {
-					student.Major = reader["Description"].ToString();
+				if (reader["MajorId"] != System.DBNull.Value) {
+					student.MajorId = Convert.ToInt32(reader["MajorId"]);
 				}
 				students.Add(student);
 			}
